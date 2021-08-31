@@ -1,0 +1,791 @@
+@font-face {
+    font-family: 'bree_peruregular';
+    src: url("../fonts/breeperu_regular-webfont.eot");
+    src: url("../fonts/breeperu_regular-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/breeperu_regular-webfont.woff2") format("woff2"), url("../fonts/breeperu_regular-webfont.woff") format("woff"), url("../fonts/breeperu_regular-webfont.ttf") format("truetype"), url("../fonts/breeperu_regular-webfont.svg#bree_peruregular") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'BreePeru_Light';
+    src: url("../fonts/BreePeru_Light");
+    src: url("../fonts/BreePeru_Light?#iefix") format("embedded-opentype"), url("../fonts/BreePeru_Light") format("woff2"), url("../fonts/breeperu_regular-webfont.woff") format("woff"), url("../fonts/breeperu_regular-webfont.ttf") format("truetype"), url("../fonts/breeperu_regular-webfont.svg#bree_peruregular") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+    @font-face {
+        font-family: 'bree_peruregular';
+        src: url("../fonts/breeperu_regular-webfont.svg#bree_peruregular") format("svg");
+    }
+}
+
+@font-face {
+    font-family: 'bree_perubold';
+    src: url("../fonts/breeperu_bold-webfont.eot");
+    src: url("../fonts/breeperu_bold-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/breeperu_bold-webfont.woff2") format("woff2"), url("../fonts/breeperu_bold-webfont.woff") format("woff"), url("../fonts/breeperu_bold-webfont.ttf") format("truetype"), url("../fonts/breeperu_bold-webfont.svg#bree_perubold") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+    @font-face {
+        font-family: 'bree_perubold';
+        src: url("../fonts/breeperu_bold-webfont.svg#bree_perubold") format("svg");
+    }
+}
+
+@font-face {
+    font-family: "BreePeru_Light";
+    src: url("../fonts/BreePeru_Light.otf") format("opentype");
+}
+@font-face {
+    font-family: "Bree_peruregular";
+    src: url("../fonts/BreePeru_Regular.otf") format("opentype");
+}
+
+
+.gris {
+    color: #7f7f7f;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.gris .fechaEvento {
+    color: #0068ba;
+    font-size: 20px;
+}
+
+.gris .tituloEvento {
+    margin: 0;
+}
+
+.gris .lugarEvento {
+    font-size: 16px;
+    color: #000;
+}
+
+.gris h2 {
+    font-family: "bree_peruregular";
+    letter-spacing: -1px;
+}
+
+ul li {
+	font-family: "Open Sans";
+	font-size:14px;
+	
+	}
+
+@media (max-width: 1201px) {
+    .gris .fecha {
+        margin: 10px 0 0;
+    }
+    .gris h2 {
+        margin-top: 10px;
+        font-size: 20px;
+    }
+}
+
+.gris #player {
+    width: 100%;
+    height: 477px;
+}
+
+@media (max-width: 1200px) {
+    .gris #player {
+        height: 400px;
+    }
+}
+
+@media (max-width: 1201px) {
+    .gris #player {
+        height: 300px;
+    }
+}
+
+@media (max-width: 1201px) {
+    .gris #player {
+        height: 200px;
+    }
+}
+
+.gris2 {
+    color: #7f7f7f;
+    font-size: 13px;
+}
+
+
+
+
+
+
+
+.selecionado {
+    font-size: 13px;
+    color: #e53d35 !important;
+}
+
+
+.flechaMen {
+    padding-top: 10px;
+}
+
+.carousel-control {
+    width: 40px;
+}
+
+.carousel-control .glyphicon-chevron-right {
+    margin-top: -39px;
+    margin-right: -10px;
+}
+
+.carousel-control .glyphicon-chevron-right:before {
+    display: block;
+    width: 40px;
+    height: 78px;
+    content: "";
+    background-image: url(../img/flechitaDerecha.png);
+    background-repeat: no-repeat;
+    background-color: black;
+    background-position: center;
+}
+
+.carousel-control {
+    width: 40px;
+}
+
+.carousel-control .glyphicon-chevron-left {
+    margin-top: -39px;
+    margin-left: -20px;
+}
+
+.carousel-control .glyphicon-chevron-left:before {
+    display: block;
+    width: 40px;
+    height: 78px;
+    content: "";
+    background-image: url(../img/flechitaIzquierda.png);
+    background-repeat: no-repeat;
+    background-color: black;
+    background-position: center;
+}
+
+.carousel .caption {
+    font-size: 13px;
+    margin-top: 7px;
+    font-weight: bold;
+}
+
+.cabecera {
+    margin-top: 35px;
+}
+
+.cabecera .logotipo img {
+    width: 100%;
+    height: auto;
+}
+
+@media (max-width: 1201px) {
+    .cabecera .logotipo {
+        text-align: center;
+    }
+}
+
+.imagenAncho {
+    width: 100%;
+}
+
+h2 {
+    color: black;
+}
+
+.textoParrafos {
+    padding-top: 15px;
+    text-align: justify;
+}
+
+.textoParrafos img {
+    width: 80%;
+    margin: 0 auto;
+    display: block;
+}
+
+.textoParrafos .titCentradoBold {
+    text-align: center;
+    font-weight: bold;
+    margin: 15px 0;
+    display: block;
+    font-size: 12px;
+}
+
+.textoParrafos i {
+    font-weight: 300;
+}
+
+.compartir {
+    width: 100%;
+    height: 33px;
+    margin: 30px 0;
+}
+
+.compartir span {
+    float: left;
+    margin-right: 10px;
+    padding-top: 5px;
+    /*font-weight: bold;*/
+}
+
+.compartir ul {
+    display: inline-block;
+    list-style-type: none;
+    padding: 0px;
+}
+
+.compartir ul li {
+    margin-right: 10px;
+    float: left;
+}
+
+.botonesVerBoletin {
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    height: 45px;
+    margin-bottom: 30px;
+}
+
+.botonesVerBoletin .verBoletinOnline {
+    display: block;
+    background-color: #0068BC;
+    border-radius: 5px;
+    border: none;
+    width: 218px;
+    height: 45px;
+    color: #fff;
+    float: left;
+    margin-right: 15px;
+    text-align: center;
+    line-height: 42px;
+    text-decoration: none;
+    cursor: pointer;
+}
+.yt_turismoin {
+       position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%;
+}
+.video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+@media (max-width: 1201px) {
+    .botonesVerBoletin .verBoletinOnline {
+        width: 90%;
+        margin: 0 5% 12px;
+   }
+
+.botonesVerBoletin .verTodosLosBoletines {
+    display: block;
+    background-color: #636363;
+    border-radius: 5px;
+    border: none;
+    width: 236px;
+    height: 45px;
+    color: #fff;
+    float: left;
+    margin-right: 15px;
+    text-align: center;
+    line-height: 42px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+@media (max-width: 1201px) {
+    .botonesVerBoletin .verTodosLosBoletines {
+        width: 90%;
+        margin: 0 5% 12px;
+    }
+}
+
+.menuDerecha {
+    background-color: #F9F9F9;
+    padding: 25px 0px;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 1201px) {
+    .menuDerecha {
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 1201px) {
+    .menuDerecha {
+        margin-bottom: 20px;
+    }
+}
+
+.menuDerecha .tituloDeMenuListado {
+    font-size: 19px;
+    position: relative;
+    display: block;
+    padding: 0px 15px;
+    font-family: "bree_peruregular";
+}
+
+@media (max-width: 1201px) {
+    .menuDerecha .list-group {
+        margin-bottom: 0;
+    }
+}
+
+.menuDerecha .list-group-item {
+    border-bottom: 1px solid #ddd;
+    font-size: 13px;
+    color: #0068ba !important;
+    background-color: #F9F9F9;
+    padding: 12px 35px 12px 15px;
+}
+
+@media (max-width: 1201px) {
+    .menuDerecha .list-group-item {
+        padding: 10px 45px 10px 15px;
+    }
+}
+
+.menuDerecha .list-group-item:hover {
+    background-color: #0068ba;
+    color: #F9F9F9 !important;
+}
+
+.menuDerecha .list-group-item:hover .subtEvento {
+    color: #fff;
+}
+
+.menuDerecha .list-group-item:hover:after {
+    background-image: url(../img/flechitaHover.png);
+}
+
+.menuDerecha .list-group-item:after {
+    background-image: url(../img/flechita.png);
+    content: "   ";
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    margin: -10px 10px 0 10px;
+    width: 11px;
+    height: 20px;
+}
+
+@media (max-width: 1201px) {
+    .menuDerecha .list-group-item:after {
+        margin: -10px 20px 0 10px;
+    }
+}
+
+.menuDerecha .list-group-item .subtEvento {
+    color: #000;
+    margin: 0;
+    font-size: 14px;
+}
+
+.menuDerecha .active {
+    background-color: #0068ba !important;
+    color: #fff !important;
+    cursor: default;
+}
+
+.menuDerecha .active .subtEvento {
+    color: #fff;
+}
+
+.menuDerecha .active:after {
+    background-image: url(../img/flechitaHover.png);
+}
+
+.menuDerecha .titEvento {
+    font-size: 16px;
+}
+
+.topMenuInfo {
+    background-color: transparent;
+    margin: 0 0 25px;
+    padding: 0;
+    margin-left: -10px;
+    margin-right: -10px;
+}
+
+.topMenuInfo .list-group-item {
+    border-radius: 0;
+}
+
+.infografiaC {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.infografiaC .infoCompleta img {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+aside {
+    padding-top: 112px;
+    padding-bottom: 0px;
+    /*.menuDerecha{
+
+          background-color: #F9F9F9;
+          padding: 25px 0px;
+          margin-bottom: 190px;
+          @include breakpoint(XS){
+              margin-bottom: 10px;
+          }
+          @include breakpoint(S){
+              margin-bottom: 20px;
+          }
+
+          .tituloDeMenuListado{
+              font-size: 18px;
+              position: relative;
+              display: block;
+              padding: 0px 15px;
+              font-weight: bold;
+          }
+          .list-group{
+              @include breakpoint(XS){
+                  margin-bottom: 0;
+              }
+              }
+
+              .list-group-item{
+
+                  border-bottom:  1px solid #ddd;
+                  font-size: 13px;
+                  color: #0068ba !important;
+                  background-color: #F9F9F9;
+                  padding: 12px 35px 12px 15px;
+                  @include breakpoint(XS){
+                      padding: 15px 45px 15px 15px;
+                  }
+                  &:hover{
+                      background-color: #0068ba;
+                      color: #F9F9F9 !important;
+                      .subtEvento{
+                          color: #fff;
+                      }
+                      &:after{
+                          background-image: url(../img/flechitaHover.png);
+                      }
+                  }
+                  //&:after{
+                      background-image: url(../img/flechita.png);
+                      content: "   ";
+                      display: block;
+                      position: absolute;
+                      right: 0;
+                      top: 50%;
+                      margin: -10px 10px 0 10px;
+                      width: 11px;
+                      height: 20px;
+                      @include breakpoint(XS){
+                          margin: -10px 20px 0 10px;
+                      }
+                  }
+
+                  .subtEvento{
+                      color: #000;
+                      margin: 0;
+                      font-size: 14px;
+                  }
+              }
+              .active{
+                  background-color: #0068ba !important;
+                  color: #fff !important;
+                  cursor: default;
+                  .subtEvento{
+                      color: #fff;
+                  }
+                  &:after{
+                      background-image: url(../img/flechitaHover.png);
+                  }
+              }
+              .titEvento{
+                  font-size: 16px;
+
+              }
+          }*/
+}
+
+em {
+	font-weight:lighter;
+	}
+
+@media (max-width: 1201px) {
+    aside {
+        padding-top: 145px;
+    }
+}
+
+@media (max-width: 1201px) {
+    aside {
+        padding-top: 10px;
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+}
+
+aside .menuInfog {
+    background-color: transparent;
+    padding: 25px 0px;
+    margin-bottom: 190px;
+}
+
+@media (max-width: 1201px) {
+    aside .menuInfog {
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 1201px) {
+    aside .menuInfog {
+        margin-bottom: 20px;
+    }
+}
+
+aside .menuInfog .tituloDeMenuListado {
+    font-size: 18px;
+    position: relative;
+    display: block;
+    padding: 0px 15px;
+    font-weight: bold;
+}
+
+@media (max-width: 1201px) {
+    aside .menuInfog .list-group {
+        margin-bottom: 0;
+    }
+}
+
+aside .menuInfog .list-group .list-group-item {
+    height: 55px;
+    border-bottom: 1px solid #ddd;
+    font-size: 13px;
+    color: #0068ba !important;
+    background-color: #F9F9F9;
+    padding: 10px 5px 12px 30px;
+    border-radius: 0;
+}
+
+@media (max-width: 1201px) {
+    aside .menuInfog .list-group .list-group-item {
+        padding: 7px 5px 5px 25px;
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 1201px) {
+    aside .menuInfog .list-group .list-group-item {
+        padding: 15px 45px 15px 15px;
+    }
+}
+
+aside .menuInfog .list-group .list-group-item:hover {
+    background-color: #005cb9;
+    color: #F9F9F9 !important;
+}
+
+aside .menuInfog .list-group .list-group-item:hover .subtEvento {
+    color: #fff;
+}
+
+aside .menuInfog .list-group .list-group-item:hover:after {
+    background-image: url(../img/flechaInfo.jpg);
+}
+
+aside .menuInfog .list-group .list-group-item:after {
+    background-image: url(../img/flechaInfo_.jpg);
+    content: " ";
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: 0px 10px 0 0px;
+    width: 21px;
+    height: 55px;
+}
+
+@media (max-width: 1201px) {
+    aside .menuInfog .list-group .list-group-item:after {
+        margin: -10px 20px 0 10px;
+    }
+}
+
+aside .menuInfog .list-group .list-group-item .subtEvento {
+    color: #000;
+    margin: 0;
+    font-size: 14px;
+}
+
+aside .menuInfog .list-group .active {
+    background-color: #005cb9 !important;
+    color: #fff !important;
+    cursor: default;
+}
+
+aside .menuInfog .list-group .active .subtEvento {
+    color: #fff;
+}
+
+aside .menuInfog .list-group .active:after {
+    background-image: url(../img/flechaInfo.jpg);
+}
+
+aside .menuInfog .list-group .titEvento {
+    font-size: 16px;
+}
+
+.asideInfo {
+    padding-top: 40px;
+}
+
+.suscribete {
+    background-image: url(../img/figuraFondoAzul.jpsg);
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    text-align: center;
+    background-color: #0068BC;
+    width: 100%;
+    height: 259px;
+    padding-top: 25px;
+}
+
+@media (max-width: 1201px) {
+    .suscribete {
+        width: 90%;
+        margin-left: 5%;
+    }
+}
+
+.suscribete p {
+    color: white;
+    font-size: 13px;
+    margin: 10px 5px;
+    line-height: 20px;
+}
+
+@media (max-width: 1201px) {
+    .suscribete p {
+        font-size: 12px;
+        margin: 10px;
+    }
+}
+
+@media (max-width: 1201px) {
+    .suscribete p {
+        margin: 10px;
+    }
+}
+
+.suscribete p:first-child {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+}
+
+@media (max-width: 1200px) {
+    .suscribete p:first-child {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 1201px) {
+    .suscribete p:first-child {
+        font-size: 14px;
+    }
+}
+
+.suscribete .casillaInput {
+    margin-bottom: 15px;
+    width: 80%;
+    height: 26px;
+    padding: 0 5px;
+}
+
+.suscribete .error {
+    border: 2px solid #C4122E;
+    color: #C4122E;
+}
+
+.suscribete .btnSuscribir {
+    line-height: 32px;
+    display: block;
+    width: 70%;
+    height: 36px;
+    margin: 10px 15%;
+    color: #333;
+    border: 2px solid white;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    font-size: 13px;
+    text-decoration: none;
+}
+
+.suscribete .btnSuscribir:hover {
+    background: #fff;
+    color: #0068BC;
+    text-decoration: none;
+}
+
+
+
+@media (max-width: 1201px) {
+    footer .pieDePag {
+        text-align: center;
+    }
+}
+
+footer .pieDePag .pie {
+    padding-top: 20px;
+}
+
+@media (max-width: 1200px) {
+    footer .pieDePag .pie .izquierda img {
+        width: 40%;
+    }
+}
+
+footer .pieDePag .pie .centro {
+    text-align: center;
+    color: white;
+    font-size: 11.5px;
+    /*@include breakpoint(M){
+                      img{
+                          width: 100%;
+                      }
+                  }
+                  @include breakpoint(XS){
+                      img{
+                          width: 300px;
+                          padding-right: 0 !important;
+                      }
+                  }*/
+}
+
+footer .pieDePag .pie .derecha {
+    position: absolute;
+    right: 35px;
+    text-align: right;
+}
+
+footer .pieDePag .pie img {
+    padding-right: 15px;
+}

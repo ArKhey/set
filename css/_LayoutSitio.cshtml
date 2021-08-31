@@ -1,0 +1,751 @@
+﻿@using SiiturApp.Models.Entidades;
+@using SiiturApp.Models.ViewModels;
+@using Microsoft.AspNet.Identity
+@{
+    string elemActivo;
+    var db = new ConexionBD();
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<!-- Google Tag Manager -->
+	<script> (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+	'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-PBMCF8C');
+	</script>
+	<!-- End Google Tag Manager -->
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Turismo In </title>
+    @Styles.Render("~/Content/css/bootstrap.css")
+    @Styles.Render("~/Content/css/font-awesome.css")
+    @Styles.Render("~/Content/css/styles.css")
+    @*@Styles.Render("~/Content/css/style-responsive.css")*@
+    <link href="~/Content/css/responsive.css" rel="stylesheet" />
+
+    @*@Styles.Render("~/Content/css/.css")*@
+    <link rel="icon" type="image/x-icon" href="~/Content/images/promperu-favicon.png" />
+    <!-- GFonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet" type="text/css">
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    @RenderSection("head", required: false)
+
+    <script src="~/Scripts/jquery-1.11.3.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/scriptin.js"></script>
+    @Scripts.Render("~/bundles/jqueryval")
+
+</head>
+<body id="push">
+	<!-- Google Tag Manager (noscript) -->
+	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBMCF8C"
+	height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+	<!-- End Google Tag Manager (noscript) @@cocoPaivaPeru -->
+
+    <div class="container-fluid @ViewBag.estadoMenus" id="search">
+        <div class="container">
+            <div class="navbar-form text-center" role="search">
+                @using (Html.BeginForm("Buscar", "sitio"))
+                {
+                    <div class="form-group">
+                        <input name="criterio" type="text" class="form-control" placeholder="¿Qué buscas?">
+                        @*<button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>*@
+                        <button id="buscar" class="btn btn-default"><i class="fa fa-search"></i></button>
+                    </div>
+                    @*<button class="btn btn-default" id="buscar">Buscar</button>*@
+                }
+
+                <div class="pull-right" style="margin-top: -30px;">
+                    <button class="pull-right" id="btn-cerrar"><i class="fa fa-times"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @{
+        //var paisesPriorizados = new List<rep_paises_priorizados>();
+        //var ciudadesEmisoras = new List<rep_ciudades_emisoras>();
+        var perfilesSegmentos = new List<perfil_segmentos>();
+        var paisesPriorizados = new List<wmPriorizadosContenido>();
+        //var paisesPriorizados2 = new List<rep_paises_priorizados>();
+        var ciudadesEmisoras = new List<wmPriorizadosContenido>();
+
+        try
+        {
+            db.Database.Connection.Open();
+            //int MaxAnio = Convert.ToInt32(db.contenido_priorizados.Where(s=>s.ciudad_id==null).Max(i => i.anio).ToString());
+            //paisesPriorizados = (from pc in db.contenido_priorizados
+            //                     join p in db.pais on pc.pais_id equals p.id
+            //                     where (pc.ciudad_id == null && pc.anio == MaxAnio && pc.estado==true)
+            //                     select new wmPriorizadosContenido
+            //                     { title = p.nombre, idPriorizado = pc.id }
+            //                    ).OrderBy(o => o.title).Distinct().ToList();
+
+            //paisesPriorizados2 = db.rep_paises_priorizados.ToList();
+
+            paisesPriorizados = (from pc in db.contenido_priorizados
+                                 join p in db.pais on pc.pais_id equals p.id
+                                 where (pc.ciudad_id == null && pc.estado == true)
+                                 group pc by new { p.nombre } into g
+                                 select new wmPriorizadosContenido
+                                 {
+                                     title = g.Key.nombre,
+                                     idPriorizado = g.Max(i=>i.id)
+                                 }
+                 ).OrderBy(o => o.title).ToList();
+
+
+            //int MaxAnioCiudad = Convert.ToInt32(db.contenido_priorizados.Where(s => s.pais_id == null).Max(i => i.anio).ToString());
+            //ciudadesEmisoras = (from pc in db.contenido_priorizados
+            //                    join p in db.ciudad on pc.ciudad_id equals p.id
+            //                    where (pc.pais_id == null && pc.anio == MaxAnioCiudad && pc.estado == true)
+            //                    select new wmPriorizadosContenido
+            //                    { title = p.nombre, idPriorizado = pc.id }
+            // ).OrderBy(o=>o.title).Distinct().ToList();
+
+            ciudadesEmisoras = (from pc in db.contenido_priorizados
+                                join p in db.ciudad on pc.ciudad_id equals p.id
+                                where (pc.pais_id == null && pc.estado == true)
+                                group pc by new { p.nombre } into g
+                                select new wmPriorizadosContenido
+                                {
+                                    title = g.Key.nombre,
+                                    idPriorizado = g.Max(i => i.id)
+                                }
+             ).OrderBy(o => o.title).ToList();
+
+            //ciudadesEmisoras = db.rep_ciudades_emisoras.ToList();
+
+            //perfilesSegmentos = db.perfil_segmentos.ToList();
+            db.Database.Connection.Close();
+        }
+        catch(Exception ex)
+        {
+            <div class="alert alert-danger fade in">
+                <div class="row transparent">
+                    <div class="container transparent">
+                        <a class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <div>No se puede conectar con la base de datos. Int&eacute;ntelo m&aacute;s tarde.</div>
+                        <p>@ex.Message</p>
+                    </div>
+                </div>
+            </div>
+        }
+
+        }
+
+
+        @Html.Partial("_LoginPartialSitio")
+
+    <!-- ******************* MENU ***************** -->
+            <div class="container-fluid barra-nav @ViewBag.estadoMenus">
+                <nav class="navbar navbar-default container" id="home">
+                    <div class="collapse navbar-collapse pull-right" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            @*@{
+                    elemActivo = ViewBag.Inicio != null ? "active" : "";
+                    <li class="@elemActivo"><a href="/turismoin">Inicio <span class="sr-only">(current)</span></a></li>
+                    }*@
+
+                            <li class="dropdown"><a href="/turismoin" title="Home de TurismoIN" style="padding: 0px;"><img src="~/Content/images/icons/home.png" /><span class="sr-only">(current)</span></a></li>
+
+                            @if (Request.IsAuthenticated)
+                            {
+                                var nombreUsuario = User.Identity.GetUserName();
+                                nombreUsuario = nombreUsuario.Substring(0, nombreUsuario.IndexOf("@"));
+
+                                <li class="itemMenuLogin"><a href="~/Sitio/MiPerfil" id="drop" class="btn btn-registro" title="@User.Identity.GetUserName()"><span class="fa fa-user"></span>&nbsp;@nombreUsuario</a></li>
+                            }
+                            else
+                            {
+                                <li class="itemMenuLogin">
+                                    <a href="#" class="btn btn-registro" id="btnLogin" onclick="fPopupLogin();" name="btnLogin" title="Ingresa con tu usuario y clave">
+                                        <i class="fa fa-users"></i>&nbsp;&nbsp;<strong>Acceder</strong>
+                                    </a>
+                                </li>
+                            }
+
+
+                            @if (Request.IsAuthenticated)
+                            {
+                                <li class="itemMenuLogin"><a href="javascript:document.getElementById('logoutForm').submit()" class="btn btn-registro"><span class="fa fa-sign-out"></span>&nbsp;Cerrar sesi&oacute;n</a></li>
+                            }
+                            else
+                            {
+                                elemActivo = ViewBag.esRegistro != null ? "active" : "";
+                                <li class="@elemActivo itemMenuLogin">
+                                    <a href="~/Account/Register">
+                                        <i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;Registrarse
+                                    </a>
+                                </li>
+                            }
+
+
+                            @{
+                                elemActivo = ViewBag.EstadisticasEnLinea != null ? "active" : "";
+                                <li class="menuevo dropdown @elemActivo">
+                                    <a href="~/sitio/MercadosSegmentos" class="dropdown-toggle disabled" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="false">Cifras tur&iacute;sticas</a>
+                                    <ul class="dropdown-menu turismo-dropdown">
+
+                                        <li class="@elemActivo"><a href="~/sitio/ReportesPaisesPriorizados">Mercados Internacionales</a></li>
+
+                                        <li class="@elemActivo"><a href="~/sitio/ReportesCiudadesEmisoras">Mercados Nacionales</a></li>
+
+                                    </ul>
+                                </li>
+                            }
+
+                            @{
+                                elemActivo = ViewBag.PerfVacacionistaExt != null ? "active" : "";
+                                <li class="menuevo @elemActivo"><a href="~/sitio/PerfTuristaExt">Conoce al Turista Extranjero</a></li>
+                            }
+                            @{
+                                elemActivo = ViewBag.PerfVacacionistaNac != null ? "active" : "";
+                                <li class="menuevo @elemActivo"><a href="~/sitio/PerfVacacionistaNac">Conoce al Vacacionista Nacional</a></li>
+                            }
+
+                            @{
+                                elemActivo = ViewBag.BibliotecaReportes != null ? "active" : "";
+
+                                <li class="menuevo dropdown @elemActivo">
+                                    <a href="~/sitio/BibliotecaReportes" class="dropdown-toggle disabled" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="false">Biblioteca de Reportes</a>
+                                    <ul class="dropdown-menu turismo-dropdown">
+
+                                        <li class="@elemActivo"><a href="~/sitio/ReporteTuristaExtranjero">Turista Extranjero</a></li>
+
+                                        <li class="@elemActivo"><a href="~/sitio/ReporteTuristaNacional">Turista Nacional</a></li>
+
+                                    </ul>
+                                </li>
+                            }
+
+                            @{
+                                elemActivo = ViewBag.ActualidadyTendencias != null ? "active" : "";
+                                <li class="menuevo @elemActivo"><a href="~/sitio/Boletines">Actualidad y Tendencias</a></li>
+                            }
+                            <!--
+                @{
+                    elemActivo = ViewBag.TurismoCifras != null ? "active" : "";
+
+                    <li class="dropdown @elemActivo">
+                        <a href="~/sitio/TurismoCifras" class="dropdown-toggle disabled" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="false">Turismo en Cifras</a>
+                        <ul class="dropdown-menu turismo-dropdown">
+                            @{
+                                elemActivo = ViewBag.Publicaciones != null ? "active" : "";
+                                <li class="@elemActivo"><a href="~/sitio/Publicaciones">Publicaciones</a></li>
+                                elemActivo = ViewBag.Infografias != null ? "active" : "";
+                                <li class="@elemActivo"><a href="~/sitio/Infografias">Infograf&iacute;as</a></li>
+                            }
+                        </ul>
+                    </li>
+                }
+
+
+                @{
+                    elemActivo = ViewBag.DemandaActual != null ? "active" : "";
+                    <li class="dropdown @elemActivo">
+                        <a href="~/sitio/DemandaActual" class="dropdown-toggle disabled" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="false">Demanda Actual</a>
+                        <ul class="dropdown-menu demanda-dropdown">
+                            @{
+                                elemActivo = ViewBag.PerfVacacionistaNac != null ? "active" : "";
+                                <li class="@elemActivo">
+                                    <a href="~/sitio/PerfVacacionistaNac">
+                                        Perfil del Vacacionista<br />
+                                        Nacional
+                                    </a>
+                                </li>
+                                elemActivo = ViewBag.PerfVacacionistaExt != null ? "active" : "";
+                                <li class="@elemActivo">
+                                    <a href="~/sitio/PerfTuristaExt">
+                                        Perfil del Turista<br>
+                                        Extranjero
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </li>
+                }
+
+                            @{
+                                elemActivo = ViewBag.MercadosSegmentos != null ? "active" : "";
+                                <li class="dropdown @elemActivo">
+                                    <a href="~/sitio/MercadosSegmentos" class="dropdown-toggle disabled" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="false">Mercados y Clasificación</a>
+                                    <ul class="dropdown-menu mercados-dropdown multi-column columns-3 container hidden-xs">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+
+                                                <a href="@Url.Content("~/sitio/ReportesPaisesPriorizados")">
+                                                    <h5 class="submenu-title">
+                                                        Reportes de
+                                                        <br>
+                                                        países de interés
+                                                    </h5>
+                                                </a>
+
+                                            </div>
+
+                                            <div class="col-sm-4 especial" style="margin-left: -40px;">
+
+                                                <a href="~/sitio/ReportesCiudadesEmisoras">
+                                                    <h5 class="submenu-title especial">
+                                                        Reportes
+                                                        <br>
+                                                        ciudades emisoras
+                                                    </h5>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-2 especial">
+
+                                                <a href="@Url.Content("~/sitio/PerfilesSegmentos")">
+                                                    <h5 class="submenu-title">
+                                                        Reportes de
+                                                        <br>turismo especializado
+                                                    </h5>
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-2" style="padding-right: 0;">
+                                                <ul class="multi-column-dropdown">
+                                                    @{
+                                                        int cant = 0;
+                                                        long resto;
+                                                        var elemsPorCol = paisesPriorizados.Count / 3;
+                                                        Math.DivRem(paisesPriorizados.Count, 3, out resto);
+                                                        if (resto > 0)
+                                                        {
+                                                            elemsPorCol++;
+                                                        }
+                                                        for (int i = cant; i < paisesPriorizados.Count && i < elemsPorCol; i++)
+                                                        {
+                                                            <li><a href="~/sitio/Paises/@paisesPriorizados[i].idPriorizado/@paisesPriorizados[i].title" title="País de interes @paisesPriorizados[i].title">@paisesPriorizados[i].title </a></li>
+                                                            cant++;
+                                                        }
+                                                        paisesPriorizados.RemoveRange(0, cant);
+                                                        cant = 0;
+                                                    }
+                                                </ul>
+                                            </div>
+                                            <div class="col-sm-2" style="padding-right: 0; padding-left: 0;">
+                                                <ul class="multi-column-dropdown">
+                                                    @{
+                                                        for (int i = cant; i < paisesPriorizados.Count && i < elemsPorCol; i++)
+                                                        {
+                                                            <li><a href="~/sitio/Paises/@paisesPriorizados[i].idPriorizado/@paisesPriorizados[i].title" title="País de interes @paisesPriorizados[i].title">@paisesPriorizados[i].title </a></li>
+                                                            cant++;
+                                                        }
+                                                        paisesPriorizados.RemoveRange(0, cant);
+                                                        cant = 0;
+                                                    }
+                                                </ul>
+                                            </div>
+                                            <div class="col-sm-2" style="padding-left: 0;">
+                                                <ul class="multi-column-dropdown">
+                                                    @{
+                                                        for (int i = cant; i < paisesPriorizados.Count && i < elemsPorCol; i++)
+                                                        {
+                                                            <li><a href="~/sitio/Paises/@paisesPriorizados[i].idPriorizado/@paisesPriorizados[i].title" title="País de interes @paisesPriorizados[i].title">@paisesPriorizados[i].title</a></li>
+                                                        }
+                                                    }
+                                                </ul>
+                                            </div>
+                                            <div class="submenu-separator"></div>
+                                            <div class="col-sm-2" style="padding-right: 0;">
+                                                <ul class="multi-column-dropdown">
+                                                    @{
+                                                        int cantidad = 0;
+                                                        long residuo;
+                                                        var elemsCiudadCol = ciudadesEmisoras.Count / 2;
+                                                        Math.DivRem(ciudadesEmisoras.Count, 2, out residuo);
+                                                        if (residuo > 0)
+                                                        {
+                                                            elemsCiudadCol++;
+                                                        }
+
+                                                        for (int s = cantidad; s < ciudadesEmisoras.Count && s < elemsCiudadCol; s++)
+                                                        {
+                                                            <li><a href="~/sitio/Ciudades/@ciudadesEmisoras[s].idPriorizado/@ciudadesEmisoras[s].title">@ciudadesEmisoras[s].title</a></li>
+                                                            cantidad++;
+                                                        }
+                                                        ciudadesEmisoras.RemoveRange(0, cantidad);
+                                                        cantidad = 0;
+                                                    }
+                                                </ul>
+                                            </div>
+
+                                            <div class="col-sm-2" style="padding-right: 0; padding-left: 0;">
+                                                <ul class="multi-column-dropdown">
+                                                    @{
+                                                        for (int s = cantidad; s < ciudadesEmisoras.Count && s < elemsCiudadCol; s++)
+                                                        {
+                                                            <li><a href="~/sitio/Ciudades/@ciudadesEmisoras[s].idPriorizado/@ciudadesEmisoras[s].title">@ciudadesEmisoras[s].title</a></li>
+                                                        }
+                                                    }
+                                                </ul>
+                                            </div>
+
+                                            <div class="submenu-separator"></div>
+                                            <div class="col-sm-2 especial">
+                                                <ul class="multi-column-dropdown">
+                                                    @foreach (var item in perfilesSegmentos)
+                                                    {
+
+                                                        if (item.id > 1010)
+                                                        {
+                                                            <li><a href="~/sitio/VisorDocumentos?titulo=@item.nombre&url=@item.nombre_fichero&nombObjeto=PerfilesSegmentos&back=/TurismoIN/sitio/PerfilesSegmentos">@item.nombre</a></li>
+                                                        }
+                                                    }
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </ul>
+
+
+                                    <ul class="dropdown-menu turismo-dropdown hidden-sm hidden-md hidden-lg">
+                                        <li><a href="@Url.Content("~/sitio/ReportesPaisesPriorizados")"><h5>Reportes de Países Priorizados</h5></a></li>
+                                        <li><a href="@Url.Content("~/sitio/ReportesCiudadesEmisoras")"><h5>Reportes de Ciudades Emisoras</h5></a></li>
+                                        <li><a href="@Url.Content("~/sitio/PerfilesSegmentos")"><h5>Reportes de turismo especializado</h5></a></li>
+
+                                    </ul>
+
+
+                                </li>
+                            }
+
+
+                            @{
+                                elemActivo = ViewBag.TradeMarket != null ? "active" : "";
+                                <li class="dropdown @elemActivo">
+                                    <a href="~/sitio/TradeMarket" class="dropdown-toggle disabled" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="false">HERRAMIENTAS COMERCIALES</a>
+                                    <ul class="dropdown-menu trade-market-dropdown">
+                                        @{ elemActivo = ViewBag.GuiasPlanMarketing != null ? "active" : "";
+                                            <li class="@elemActivo">
+                                                <a href="~/sitio/GuiasPlanMarketing">
+                                                    Guías de Plan de Marketing
+                                                </a>
+                                            </li>
+                                        }
+                                        @{
+                                            elemActivo = ViewBag.ReportesEstadisticos != null ? "active" : "";
+
+                                        }
+                                        @{elemActivo = ViewBag.MercadosPotenciales != null ? "active" : "";
+                                            <li class="@elemActivo" style="display:none;">
+                                                <a href="~/sitio/MercadosPotenciales">
+                                                    Mercados Potenciales
+                                                </a>
+                                            </li>
+                                        }
+                                        @{elemActivo = ViewBag.HerramientasAnalisis != null ? "active" : "";
+                                            <li class="@elemActivo">
+                                                <a href="~/sitio/HerramientasAnalisis">
+                                                    Fuentes de Análisis
+                                                </a>
+                                            </li>
+                                        }
+                                    </ul>
+                                </li>
+                            }
+
+                            @{
+                                elemActivo = ViewBag.ConociendoAlTurista != null ? "active" : "";
+                                <li class="dropdown @elemActivo">
+                                    <a href="~/sitio/ConociendoAlTurista" class="dropdown-toggle disabled" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="false">Turista de festividades</a>
+                                    <ul class="dropdown-menu mercados-dropdown multi-column columns-3 container hidden-xs" style="display:none">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <a href="@Url.Content("~/sitio/ConociendoAlTurista")">
+                                                    <h5 class="submenu-title">Reportes de<br>Regiones Visitadas:</h5>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="submenu-separator"></div>
+                                            <div class="col-sm-2  especial">
+                                                <ul class="multi-column-dropdown">
+                                                    @foreach (var item in ciudadesEmisoras)
+                                                    {
+                                                        @*<li><a href="~/sitio/VisorDocumentos?titulo=@item.nombre&url=@item.nombre_fichero&nombObjeto=ConociendoAlTurista&back=/TurismoIN/sitio/ConociendoAlTurista">@item.nombre</a></li>*@
+                                                    }
+                                                </ul>
+                                            </div>
+                                            <div class="submenu-separator"></div>
+                                        </div>
+                                    </ul>
+                                </li>
+                            }
+                            -->
+
+                            @{
+                                elemActivo = ViewBag.Contacto != null ? "active" : "";
+                                <!--<li class="@elemActivo"><a href="~/sitio/Contacto">Contacto</a></li>-->
+                                <li class="dropdown"><a href="~/sitio/Contacto" title="Contacto" style="padding: 0px;"><img src="~/Content/images/Home-contacto.png" /><span class="sr-only">(current)</span></a></li>
+                            }
+                        </ul>
+
+                    </div>
+                    <!-- /.navbar-collapse -->
+
+                    <div id="divLoginPop" style="top:-25px">
+                        <div style="margin: 5px; width: 200px;">
+                            <div>
+                                <div class="row">
+                                    <div class="col col-lg-12">
+                                        <div class="form-group">
+                                            <input type="text" id="email" name="username" class="form-control" placeholder="Correo electrónico" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col col-lg-12">
+                                        <div class="form-group">
+                                            <input type="password" id="password" name="password" class="form-control" placeholder="Contraseña" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row" style="display:none">
+                                    <div class="col col-lg-12">
+                                        <div class="checkbox" style="color: #333333;">
+                                            <label>
+                                                <input id="rememberMe" type="checkbox" value="">Recordar Contraseña
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col col-lg-6">
+                                        <input type="submit" value="Ingresar" class="btn btn-blue" id="btnacceder" onclick="enviarDatos();" />
+                                    </div>
+                                    <div class="col col-lg-6">
+                                        <div id="img-loading" class="col-md-12 hidden">
+                                            <img alt="Cargando..." src="~/Content/images/loading.gif" style="margin: 15px auto;" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="row">
+                                    <div class="col col-lg-12" id="div-cont-div-error-login">
+                                        <div id="div-error-login" class="alert alert-danger hidden" style="margin-top: 5px;">
+                                            <!--<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>-->
+                                            <p id="resultado" class="text-justify"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col col-lg-12">
+                                        <a href="~/Account/ForgotPassword">¿Olvidaste tu contraseña?</a><!--Aqui-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button onclick="$('#btnLogin').click();" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span></button>
+                    </div>
+
+                </nav>
+            </div>
+    @RenderBody()
+
+    <!-- ******************* FOOTER ***************** -->
+
+    <div class="footer">
+        <div class="container">
+            <ul class="nav navbar-nav @ViewBag.estadoMenus ocultar">
+                <li class="active"><a href="/TurismoIN">Inicio</a></li>
+                <!--<li><a href="~/sitio/EstadisticasEnLinea">Estadísticas en L&iacute;nea</a></li> -->
+                <li><a href="~/sitio/TurismoCifras">Turismo en Cifras</a></li>
+                <li><a href="~/sitio/DemandaActual">Demanda Actual</a></li>
+                <li><a href="~/sitio/MercadosSegmentos">Mercados y Clasificación</a></li>
+                <li><a href="~/sitio/ConociendoAlTurista">Turista de festividades</a></li>
+                <!--<li><a href="~/sitio/TradeMarket">Trade Market</a></li> -->
+                <li><a href="~/sitio/TradeMarket">Herramientas Comerciales</a></li>
+                <li><a href="~/sitio/PoliticasUso">Políticas de Uso</a></li>
+                <li><a href="~/sitio/MapaSitio">Mapa de Sitio</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- ******************* COPYRIGHT ***************** -->
+
+    <div class="copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-2 mincetur-copy">
+                    <img src="~/Content/images/mincentur-logo.jpg" height="30" alt="" />
+                </div>
+                <div class="col-sm-2 promperu-copy">
+                    <img src="~/Content/images/turismoin-logo-bco.png" height="42" alt="" />
+                </div>
+                <div class="col-sm-6 text-center">
+                    <p>
+                        Rep&uacute;blica del Per&uacute;
+                        <br>
+                        Comisi&oacute;n de la Promoci&oacute;n de Per&uacute; para la Exportaci&oacute;n y el Turismo
+                        <br>
+                        PROMPER&Uacute; -
+                        <b>&nbsp; <a href="https://www.promperu.gob.pe" target="_blank" style="color: #fff;">www.promperu.gob.pe</a></b>
+                    </p>
+                </div>
+                <div class="col-sm-2 social-copy">
+                    <ul class="sm">
+                        <li>
+                            <a href="https://www.facebook.com/promperu" target="_blank">
+                                <img src="~/Content/images/sm/1.png" title="Facebook">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.flickr.com/photos/promperu/" target="_blank">
+                                <img src="~/Content/images/sm/2.png" title="Flickr">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.linkedin.com/company/promperu" target="_blank">
+                                <img src="~/Content/images/sm/3.png" title="Linkedin">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://twitter.com/promperu" target="_blank">
+                                <img src="~/Content/images/sm/4.png" title="Twitter">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.youtube.com/channel/UCveRrj9wB1L5BOQV-9pvqfQ" target="_blank">
+                                <img src="~/Content/images/sm/5.png" title="Youtube">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*<script src="~/Scripts/jquery-1.11.3.min.js"></script>*@
+    @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>*@
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#thumbnail').carousel({
+                interval: 6000
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#noticias').carousel({
+                interval: false
+                //interval: 2000
+            });
+
+             
+            if ($('.breadcrumb li[class="active"]').length) {
+                document.title = $('.breadcrumb li[class="active"]').first().text();
+            }
+
+
+        });
+
+   
+    </script>
+
+    <script>
+        $("#btn-buscar").on("click", function () {
+            if (!$("#push").hasClass("move")) {
+                $("#push").addClass("move");
+                $("#search").addClass("show");
+                $("#home").addClass("down");
+            } else {
+                $("#push").removeClass("move");
+                $("#search").removeClass("show");
+                $("#home").removeClass("down");
+            }
+        });
+        $("#btn-cerrar").on("click", function () {
+            $("#push").removeClass("move");
+            $("#search").removeClass("show");
+            $("#home").removeClass("down");
+        });
+    </script>
+
+    <script type="text/javascript">
+        function enviarDatos() {
+            $(document).ready(function () {
+
+                $('#img-loading').removeClass('hidden');
+                $("#div-error-login").addClass("hidden");
+
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("Autenticar", "Account")',
+                    dataType: 'json',
+                    data: { username: $("#email").val(), password: $("#password").val() },
+                    success: function (elem) {
+
+                        $("#div-error-login").removeClass("hidden alert-danger alert-warning");
+
+                        switch (elem) {
+                            case 0:
+                                $("#resultado").html("Llene ambos campos.");
+                                $("#div-error-login").addClass("alert-danger");
+                                break;
+                            case 1:
+                                $("#resultado").html("Credenciales inválidas");
+                                $("#div-error-login").removeClass("hidden");
+                                $("#div-error-login").addClass("alert-danger");
+                                break;
+                            case 2:
+                                $("#resultado").html("Su cuenta está bloqueada");
+                                $("#div-error-login").addClass("alert-warning");
+                                $("#div-error-login").removeClass("hidden");
+                                break;
+                            case 3:
+                                $("#resultado").html("Su cuenta no ha sido verificada");
+                                $("#div-error-login").removeClass("hidden");
+                                $("#div-error-login").addClass("alert-warning");
+                                break;
+                            case 4:
+                                $("#resultado").html("");
+                                $("#div-error-login").addClass("hidden");
+                                location.reload();
+                                break;
+                            case 5:
+                                $("#resultado").html("Intento de inicio de sesión inválido");
+                                $("#div-error-login").addClass("alert-danger");
+                                break;
+                        }
+                    },
+                    error: function (jqXhr, status) {
+                        $("#resultado").html(jqXhr);
+                        $("#div-error-login").removeClass("hidden");
+                    },
+                    complete: function (jqXhr, status) {
+                        $('#img-loading').addClass('hidden');
+                    }
+                });
+                return false;
+            });
+
+            $('#btnLogin').click(function () {
+                fPopupLogin()
+            });
+        };
+    </script>
+
+    @RenderSection("script", required: false)
+    @RenderSection("scripts", required: false)
+
+    <script>
+		
+    </script>
+
+</body>
+</html>

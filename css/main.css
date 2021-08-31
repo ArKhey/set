@@ -1,0 +1,625 @@
+
+
+.mb40{
+margin-bottom: 40px;
+}
+
+.mt30{
+    margin-top: 30px;
+}
+
+/*container*/
+.center-container{
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.Todo{
+    overflow: hidden;
+}
+/*container*/
+.navbar {
+    z-index: 100000;
+}
+.navbar-default .navbar-brand {
+    padding: 0px 10px !important;
+}
+/*TOP*/
+/*TOP*/
+/*TOP*/
+/*TOP*/
+.menu-principal{
+    /*width: 1180px;*/
+}
+.cabecera {
+    margin-top: -6px;
+}
+
+.nav-top{
+    margin-bottom: 12px;
+    float:right;
+}
+
+.banner-top {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 110px;
+    width: 100%;
+    background-color: #0079c1;
+   z-index: -100;
+}
+
+.banner-top-div{
+    position: relative;
+    height:110px;
+    width: 100%;
+}
+
+.banner-top-div-2{
+    position: relative;
+    height:110px;
+    width: 100%;
+}
+.banner-top-div-img{
+    height: 92px;
+    display: block;
+    float: none;
+    margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 12px;
+	z-index: -100;
+}
+
+
+
+.banner-top-div-2{
+    position: relative;
+    z-index: 10000;
+    height:110px;
+    width: 100%;
+}
+
+.mr0{
+ margin-right: 0px !important;
+}
+
+
+.banner-top-div-2-text1{
+    font-family: "bree_peruregular";
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+    float: none;
+    color: #0079c1;
+    font-weight: 600;
+    font-size: 29px;
+    margin-top: 30px    ;
+}
+
+.banner-top-div-2-text2{
+
+    margin: 0 auto;
+    font-family: "bree_peruregular";
+    text-align: center;
+    display: block;
+    float: none;
+    color: #5d5d5d;
+    font-size: 18.333333px;
+}
+
+.banner-top-div-3{
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 100;
+    /*height:455px;*/
+
+    
+    display: block;
+    max-width: 100%;
+    height: auto;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    max-height: 455px;
+
+
+}
+
+.banner-top-div-4{
+    width: 100%;
+    position: relative;
+    height: 455px;
+}
+
+/*TOP*/
+/*TOP*/
+/*TOP*/
+/*TOP*/
+
+
+
+/*article*/
+/*article*/
+/*article*/
+/*article*/
+
+.center-article{
+    padding-left: 30px;
+}
+
+
+.top-article-div{
+    margin-top: 43px;
+    height: 33px;
+    width: 100%;
+    display: block;
+}
+/*top redes*/
+.top-article-div-redes{
+    display: inline-block;
+    /*width: 237px;*/
+    margin: 0px;
+    width:auto;
+    float: right;
+}
+.article-redes-sociales-top-text{
+
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+}
+
+/*top boletin*/
+
+
+.top-article-div-boletin-fecha{
+
+    font-family: "bree_peruregular";
+    color: #2e6da4;
+    float: left;
+    display: inline-block;
+    width: 300px;
+    font-size: 18.333333px;
+}
+
+.top-article-boletin-text{
+
+    font-weight: 600;
+}
+
+/*top boletin*/
+/*center article*/
+
+.main-article{
+    /*max-width: 720px;*/
+    padding-left: 30px;
+    padding-right: 79px;
+}
+.textoParrafos{
+    font-size: 16px;
+    font-family: "BreePeru_Light";
+    font-weight: normal;
+    padding-top: 40px;
+}
+.div-img-article{
+    width:100%;
+    display: block;
+    float: left;
+    clear: both;
+    margin-bottom: 36px;
+}
+
+
+/*.div-h1-article{*/
+    /*width:100%;*/
+    /*display: block;*/
+    /*float: left;*/
+    /*clear: both;*/
+/*}*/
+
+.h1-article{
+    width:100%;
+    margin-top: 27px;
+    font-family: "Myriad Pro";
+    text-align: center;
+    display: block;
+    float: left;
+    clear: both;
+    margin: 0 auto;
+    font-size: 16px;
+    color: #0079c1;
+    margin-bottom: 11px;
+}
+.img-article{
+    width:614px !important;
+    height:auto;
+    display: block;
+    float: none;
+    margin: 0 auto;
+}
+/*center article*/
+
+/*bottom article*/
+
+.bottom-article{
+    margin-top: 48px;
+    width: 100%;
+    height: 45px;
+    overflow: hidden;
+}
+
+.bottom-article-fecha{
+    font-weight: 600;
+    display: inline-block;
+    /*width: 340px;*/
+    width: auto;
+    height: 45px;
+    float: left;
+}
+
+.bottom-article-buttons{
+    float: right;
+    display: inline-block;
+    /*width: 380px;*/
+    height: 45px;
+    width: auto;
+    margin-top: 9px;
+}
+.btn-ver-boletin {
+    width:178px;
+    -webkit-border-radius: 4;
+    -moz-border-radius: 4;
+    border-radius: 25px;
+    font-family: 'bree_peruregular';
+    color: #0d80c4;
+    font-size: 14px;
+    padding: 7px 18px;
+    border: solid #0d80c4 2px;
+    text-decoration: none;
+    text-align: center;
+    margin-right: 10px;
+}
+
+.btn-ver-boletin:hover {
+    color: #0d80c4;
+    text-decoration: none !important;
+}
+
+.btn-ver-todos-los-boletines{
+
+    width:178px;
+    -webkit-border-radius: 4;
+    -moz-border-radius: 4;
+    border-radius: 25px;
+    font-family: 'bree_peruregular';
+    color: #fff;
+    font-size: 14px;
+    padding: 8px 20px;
+    text-decoration: none;
+    background-color: #0068BC;
+    /*display: block;*/
+    /*background-color: #0068BC;*/
+    /*border-radius: 5px;*/
+    /*border: none;*/
+    /*width: 218px;*/
+    /*height: 45px;*/
+    /*color: #fff;*/
+    /*float: left;*/
+    /*padding: 4px 20px;*/
+    /*margin-right: 15px;*/
+    /*text-align: center;*/
+    /*line-height: 42px;*/
+    /*text-decoration: none;*/
+    /*cursor: pointer;*/
+    text-align: center;
+}
+.btn-ver-todos-los-boletines:hover {
+    color: #fff;
+    text-decoration: none !important;
+}
+
+
+/*bottom article*/
+
+/*article*/
+/*article*/
+/*article*/
+/*article*/
+
+
+/*Sdebar*/
+/*Sdebar*/
+/*Sdebar*/
+/*Sdebar*/
+
+
+/*109 px*/
+
+.sidebar-div{
+    padding-top: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.menuDerecha{
+    font-family: 'bree_peruregular';
+    width:371px;
+    padding-top: 0px;
+    height: 100%;
+    background-color: transparent;
+    margin-bottom:0;
+}
+.sidebar-title-div{
+    width:100%;
+    height:26px;
+}
+.sidebar-title-text{
+    color: #0079c1  ;
+    font-size:  18px;
+    font-family: 'bree_peruregular';
+    font-weight: bold;
+    display: inline-block;
+    padding-right:13px;
+    float: left;
+    width:auto;
+}
+
+.sidebar-title-bar{
+    margin-right: 16px;
+    height: 17px;
+    float: left;
+    display: inline-block;
+    /*width:70%;*/
+    width:290px;
+    /*max-width: 231px;*/
+    border-bottom: #b2d7ec 1px solid;
+}
+
+.sidebar-title-bar-1{
+    width:233px;
+}
+
+.sidebar-title-bar-2{
+    width:206px;
+}
+
+.sidebar-title-bar-3{
+    width: 199px;
+}
+
+
+
+.yt-player-sidebar{
+    width:287px;
+    margin-top: 20px;
+    
+}
+.sidebar-element-container{
+    float: left;
+    display: block;
+    clear: both;
+/*min-height: 218px;*/
+    height: auto;
+    width:100%;
+
+}
+
+.sidebar-element-container-video{
+    float: left;
+    display: block;
+    clear: both;
+    /*min-height: 218px;*/
+    height: 290px;
+    width:100%;
+
+}
+
+.sidebar-element{
+    width:290px;
+display: inline-block;
+float: left;
+}
+
+.sidebar-element-text-video{
+    display: block;
+    clear: both;
+    float: left;
+    font-family: "BreePeru_Light";
+    color: #5d5d5d;
+    width:100%;
+    font-size: 16px;
+    margin-top: 20px;
+}
+.sidebar-element-text-video:hover{
+    text-decoration: none;
+    color: #0079c1;
+}
+
+.sidebar-arrow-div{
+    display: inline-block;
+    float: left;
+    width:24px;
+    height:214px;
+
+}
+.sidebar-arrow-img{
+display: block;
+    float: none;
+    margin: auto;
+    margin-top: 71px;
+}
+.sidebar-arrow-img:hover{
+    content: url("../img/flecha-sidebar-hover.png");
+}
+.sidebar-article-div{
+    height:101px;
+    width:100%;
+    display: block;
+    float: left;
+    clear: both;
+    margin-top: 20px;
+}
+
+.sidebar-article-img{
+    display: block;
+    float: left;
+    margin: auto;
+    width: 40%
+}
+
+.sidebar-article-text{
+    font-family: "BreePeru_Light";
+    color: #5d5d5d;
+    width: 150px;
+    font-size: 14.5px;
+    text-align: left;
+    height:100px;
+    padding-left:16px;
+    padding-right: 25px;
+    display: block;
+    float: left;
+}
+
+.sidebar-article-text:hover{
+  text-decoration: none;
+    color: #0079c1;
+}
+.sidebar-article-text:focus{
+    text-decoration: none;
+    color: #0079c1;
+}
+.sidebar-article-arrow-div{
+    display: block;
+    height:  100px;
+}
+
+.sidebar-article-arrow-img{
+    margin-top: 40px;
+    display: block;
+}
+
+.sidebar-article-arrow-img:hover{
+  content: url("../img/flecha-sidebar-hover.png");
+}
+
+.sidebar-element-infografia{
+padding-top: 30px;
+}
+
+/*Sdebar*/
+/*Sdebar*/
+/*Sdebar*/
+/*Sdebar*/
+
+/*Footer*/
+/*Footer*/
+/*Footer*/
+/*Footer*/
+/*Footer*/
+/*Footer*/
+
+.footer-sub-h1 > a{
+    color: #fff;
+}
+div#social-float {
+    width: 320px;
+    height: 54px;
+    position: fixed; left: 59%; bottom: 0px;
+    background-color: #0079c1;}
+
+.footer-sub-div1{
+    display: block;
+    float: left;
+    width:320px;
+
+    height: 11px;
+    background-color: #00629c;
+}
+
+.footer-sub-arrow{
+    float: right;
+    width:8px;
+    height: 6px;
+    font-family: "bree_peruregular";
+    margin-top: 2px;
+    margin-right: 6px;
+}
+.footer-sub-arrow-toggled{
+    width:7px;
+    height: 7px;
+    content: url("../img/flechaboletinfootertoogled.png");
+}
+.footer-sub-div2{
+    float: left;
+    display: none;
+    width:320px;
+    height: 44px;
+
+    background-color: #0079c1;
+}
+.footer-sub-toogled{
+    display: block;
+    float: left;
+    width:320px;
+    height: 153px;
+
+    background-color: #0079c1;
+}
+.footer-sub-h1{
+    font-family: "bree_peruregular";
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 21.333333px;
+    color: #fff;
+text-align: center;
+}
+
+
+.footer-sub-boletin-in-text1{
+    font-family: "bree_peruregular";
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    font-size: 25px;
+    color: #fff;
+    text-align: center;
+}
+
+.h165{
+    height: 165px !important;
+}
+.footer-sub-boletin-in-text2{
+    font-family: "bree_peruregular";
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 21.333333px;
+    color: #fff;
+    text-align: center;
+}
+
+.footer-sub-boletin-button{
+    display: block;
+    float: none;
+    font-weight: bold;
+    margin: 0 auto;
+    background-color: #fff;
+    font-family: "bree_peruregular";
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width:234px;
+    height: 42px;
+    padding: 7px 0;
+    font-size: 21.333333px;
+    color: #0079c0;
+    text-align: center;
+}
+div.social-float-parent { width: 100%; height: 0px; background: #f8f8f8; position: relative; }
+
+.pieDePag{
+    z-index: 10;
+}
+/*Footer*/
+/*Footer*/
+/*Footer*/
+/*Footer*/
+/*Footer*/
